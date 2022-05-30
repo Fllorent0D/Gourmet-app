@@ -1,0 +1,28 @@
+{
+  "root": "apps/gourmet-e2e",
+  "sourceRoot": "apps/gourmet-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/gourmet-e2e/cypress.json",
+        "devServerTarget": "gourmet:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "gourmet:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/gourmet-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["gourmet"]
+}

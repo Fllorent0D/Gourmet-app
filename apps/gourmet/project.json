@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/gourmet",
+  "sourceRoot": "apps/gourmet/src",
+  "prefix": "gourmet-app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/gourmet",
+        "index": "apps/gourmet/src/index.html",
+        "main": "apps/gourmet/src/main.ts",
+        "polyfills": "apps/gourmet/src/polyfills.ts",
+        "tsConfig": "apps/gourmet/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/gourmet/src/favicon.ico", "apps/gourmet/src/assets"],
+        "styles": ["apps/gourmet/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/gourmet/src/environments/environment.ts",
+              "with": "apps/gourmet/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "gourmet:build:production"
+        },
+        "development": {
+          "browserTarget": "gourmet:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/gourmet/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "gourmet:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/gourmet/src/**/*.ts",
+          "apps/gourmet/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/gourmet"],
+      "options": {
+        "jestConfig": "apps/gourmet/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
