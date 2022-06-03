@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator nestgraphql {
+  provider = "node node_modules/prisma-nestjs-graphql"
+  output   = "../src/@generated"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Recipe {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  author            String?
+  imageUrl          String?
+  thumbnailUrl      String?
+  description       String?
+  recipeCategory    String?
+  recipeCuisine     String?
+  yield             Int?
+  prepTime          String?
+  cookTime          String?
+  totalTime         String?
+  nutrition         RecipeNutrition?
+  instructions      RecipeInstruction[]
+  ingredients       RecipeIngredients[]
+  suitableForDiet   String
+  recipeNutritionId Int?
+}
+
+model RecipeNutrition {
+  id                  Int      @id @default(autoincrement())
+  calories            String?
+  fatContent          String?
+  saturatedFatContent String?
+  carbohydrateContent String?
+  sugarContent        String?
+  proteinContent      String?
+  fiberContent        String?
+  cholesterolContent  String?
+  sodiumContent       String?
+  servingSize         Int?
+  recipe   Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId Int?
+}
+
+model RecipeIngredients {
+  recipeId Int
+  recipe   Recipe? @relation(fields: [recipeId], references: [id])
+  ingredientId Int
+  ingredient RecipeIngredient @relation(fields:[ingredientId], references: [id])
+  @@id([recipeId, ingredientId])
+}
+
+model RecipeIngredient {
+  id       Int     @id @default(autoincrement())
+  quantity Int?
+  scale    String?
+  name     String
+  recipesIngredients RecipeIngredients[]
+}
+
+model RecipeInstruction {
+  id           Int     @id @default(autoincrement())
+  step         Int
+  text         String
+  imageUrl     String?
+  thumbnailUrl String?
+  recipe   Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId Int?
+}

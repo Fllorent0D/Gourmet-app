@@ -3,6 +3,11 @@
   "root": "apps/gourmet",
   "sourceRoot": "apps/gourmet/src",
   "prefix": "gourmet-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -14,8 +19,36 @@
         "polyfills": "apps/gourmet/src/polyfills.ts",
         "tsConfig": "apps/gourmet/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/gourmet/src/favicon.ico", "apps/gourmet/src/assets"],
-        "styles": ["apps/gourmet/src/styles.scss"],
+        "allowedCommonJsDependencies": [
+          "apexcharts",
+          "highlight.js",
+          "crypto-js/enc-utf8",
+          "crypto-js/hmac-sha256",
+          "crypto-js/enc-base64"
+        ],
+        "assets": [
+          "apps/gourmet/src/favicon-16x16.png",
+          "apps/gourmet/src/favicon-32x32.png",
+          "apps/gourmet/src/assets",
+          {
+            "glob": "_redirects",
+            "input": "apps/gourmet/src",
+            "output": "/"
+          }
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "apps/gourmet/src/@fuse/styles"
+          ]
+        },
+        "styles": [
+          "apps/gourmet/src/@fuse/styles/tailwind.scss",
+          "apps/gourmet/src/@fuse/styles/themes.scss",
+          "apps/gourmet/src/styles/vendors.scss",
+          "apps/gourmet/src/@fuse/styles/main.scss",
+          "apps/gourmet/src/styles/styles.scss",
+          "apps/gourmet/src/styles/tailwind.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -23,13 +56,13 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "3mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "75kb",
+              "maximumError": "90kb"
             }
           ],
           "fileReplacements": [
