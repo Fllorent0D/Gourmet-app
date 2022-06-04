@@ -9,7 +9,7 @@ import { RecipeIngredientCount } from './recipe-ingredient-count.output';
 export class RecipeIngredient {
 
     @Field(() => ID, {nullable:false})
-    id!: number;
+    id!: string;
 
     @Field(() => Int, {nullable:true})
     quantity!: number | null;

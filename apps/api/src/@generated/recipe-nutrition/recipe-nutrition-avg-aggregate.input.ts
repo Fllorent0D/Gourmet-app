@@ -5,11 +5,5 @@ import { InputType } from '@nestjs/graphql';
 export class RecipeNutritionAvgAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
-    id?: true;
-
-    @Field(() => Boolean, {nullable:true})
     servingSize?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    recipeId?: true;
 }

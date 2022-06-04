@@ -15,7 +15,7 @@ type RecipeNutrition {
   sodiumContent: String
   servingSize: Int
   recipe: Recipe
-  recipeId: Int
+  recipeId: String
 }
 
 type RecipeInstruction {
@@ -25,7 +25,7 @@ type RecipeInstruction {
   imageUrl: String
   thumbnailUrl: String
   recipe: Recipe
-  recipeId: Int
+  recipeId: String
 }
 
 type RecipeIngredientCount {
@@ -42,9 +42,9 @@ type RecipeIngredient {
 }
 
 type RecipeIngredients {
-  recipeId: Int!
+  recipeId: String!
   recipe: Recipe
-  ingredientId: Int!
+  ingredientId: String!
   ingredient: RecipeIngredient!
 }
 
@@ -67,60 +67,24 @@ type Recipe {
   cookTime: String
   totalTime: String
   nutrition: RecipeNutrition
-  instructions: [RecipeInstruction!]
+  instructions(where: RecipeInstructionWhereInput, orderBy: [RecipeInstructionOrderByWithRelationInput!], cursor: RecipeInstructionWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeInstructionScalarFieldEnum!]): [RecipeInstruction!]
   ingredients: [RecipeIngredients!]
-  suitableForDiet: String!
+  suitableForDiet: String
   recipeNutritionId: Int
   _count: RecipeCount!
 }
 
-type Query {
-  findRecipe(where: RecipeWhereInput, orderBy: [RecipeOrderByWithRelationInput!], cursor: RecipeWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeScalarFieldEnum!]): [Recipe!]!
-}
-
-input RecipeWhereInput {
-  AND: [RecipeWhereInput!]
-  OR: [RecipeWhereInput!]
-  NOT: [RecipeWhereInput!]
-  id: IntFilter
-  name: StringFilter
-  author: StringNullableFilter
+input RecipeInstructionWhereInput {
+  AND: [RecipeInstructionWhereInput!]
+  OR: [RecipeInstructionWhereInput!]
+  NOT: [RecipeInstructionWhereInput!]
+  id: StringFilter
+  step: IntFilter
+  text: StringFilter
   imageUrl: StringNullableFilter
   thumbnailUrl: StringNullableFilter
-  description: StringNullableFilter
-  recipeCategory: StringNullableFilter
-  recipeCuisine: StringNullableFilter
-  yield: IntNullableFilter
-  prepTime: StringNullableFilter
-  cookTime: StringNullableFilter
-  totalTime: StringNullableFilter
-  nutrition: RecipeNutritionRelationFilter
-  instructions: RecipeInstructionListRelationFilter
-  ingredients: RecipeIngredientsListRelationFilter
-  suitableForDiet: StringFilter
-  recipeNutritionId: IntNullableFilter
-}
-
-input IntFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntFilter
-}
-
-input NestedIntFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntFilter
+  recipe: RecipeRelationFilter
+  recipeId: StringNullableFilter
 }
 
 input StringFilter {
@@ -151,6 +115,28 @@ input NestedStringFilter {
   not: NestedStringFilter
 }
 
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
 input StringNullableFilter {
   equals: String
   in: [String!]
@@ -177,6 +163,34 @@ input NestedStringNullableFilter {
   startsWith: String
   endsWith: String
   not: NestedStringNullableFilter
+}
+
+input RecipeRelationFilter {
+  is: RecipeWhereInput
+  isNot: RecipeWhereInput
+}
+
+input RecipeWhereInput {
+  AND: [RecipeWhereInput!]
+  OR: [RecipeWhereInput!]
+  NOT: [RecipeWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  author: StringNullableFilter
+  imageUrl: StringNullableFilter
+  thumbnailUrl: StringNullableFilter
+  description: StringNullableFilter
+  recipeCategory: StringNullableFilter
+  recipeCuisine: StringNullableFilter
+  yield: IntNullableFilter
+  prepTime: StringNullableFilter
+  cookTime: StringNullableFilter
+  totalTime: StringNullableFilter
+  nutrition: RecipeNutritionRelationFilter
+  instructions: RecipeInstructionListRelationFilter
+  ingredients: RecipeIngredientsListRelationFilter
+  suitableForDiet: StringNullableFilter
+  recipeNutritionId: IntNullableFilter
 }
 
 input IntNullableFilter {
@@ -210,7 +224,7 @@ input RecipeNutritionWhereInput {
   AND: [RecipeNutritionWhereInput!]
   OR: [RecipeNutritionWhereInput!]
   NOT: [RecipeNutritionWhereInput!]
-  id: IntFilter
+  id: StringFilter
   calories: StringNullableFilter
   fatContent: StringNullableFilter
   saturatedFatContent: StringNullableFilter
@@ -222,31 +236,13 @@ input RecipeNutritionWhereInput {
   sodiumContent: StringNullableFilter
   servingSize: IntNullableFilter
   recipe: RecipeRelationFilter
-  recipeId: IntNullableFilter
-}
-
-input RecipeRelationFilter {
-  is: RecipeWhereInput
-  isNot: RecipeWhereInput
+  recipeId: StringNullableFilter
 }
 
 input RecipeInstructionListRelationFilter {
   every: RecipeInstructionWhereInput
   some: RecipeInstructionWhereInput
   none: RecipeInstructionWhereInput
-}
-
-input RecipeInstructionWhereInput {
-  AND: [RecipeInstructionWhereInput!]
-  OR: [RecipeInstructionWhereInput!]
-  NOT: [RecipeInstructionWhereInput!]
-  id: IntFilter
-  step: IntFilter
-  text: StringFilter
-  imageUrl: StringNullableFilter
-  thumbnailUrl: StringNullableFilter
-  recipe: RecipeRelationFilter
-  recipeId: IntNullableFilter
 }
 
 input RecipeIngredientsListRelationFilter {
@@ -259,9 +255,9 @@ input RecipeIngredientsWhereInput {
   AND: [RecipeIngredientsWhereInput!]
   OR: [RecipeIngredientsWhereInput!]
   NOT: [RecipeIngredientsWhereInput!]
-  recipeId: IntFilter
+  recipeId: StringFilter
   recipe: RecipeRelationFilter
-  ingredientId: IntFilter
+  ingredientId: StringFilter
   ingredient: RecipeIngredientRelationFilter
 }
 
@@ -274,11 +270,26 @@ input RecipeIngredientWhereInput {
   AND: [RecipeIngredientWhereInput!]
   OR: [RecipeIngredientWhereInput!]
   NOT: [RecipeIngredientWhereInput!]
-  id: IntFilter
+  id: StringFilter
   quantity: IntNullableFilter
   scale: StringNullableFilter
   name: StringFilter
   recipesIngredients: RecipeIngredientsListRelationFilter
+}
+
+input RecipeInstructionOrderByWithRelationInput {
+  id: SortOrder
+  step: SortOrder
+  text: SortOrder
+  imageUrl: SortOrder
+  thumbnailUrl: SortOrder
+  recipe: RecipeOrderByWithRelationInput
+  recipeId: SortOrder
+}
+
+enum SortOrder {
+  asc
+  desc
 }
 
 input RecipeOrderByWithRelationInput {
@@ -299,11 +310,6 @@ input RecipeOrderByWithRelationInput {
   ingredients: RecipeIngredientsOrderByRelationAggregateInput
   suitableForDiet: SortOrder
   recipeNutritionId: SortOrder
-}
-
-enum SortOrder {
-  asc
-  desc
 }
 
 input RecipeNutritionOrderByWithRelationInput {
@@ -330,8 +336,25 @@ input RecipeIngredientsOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
+input RecipeInstructionWhereUniqueInput {
+  id: String
+}
+
+enum RecipeInstructionScalarFieldEnum {
+  id
+  step
+  text
+  imageUrl
+  thumbnailUrl
+  recipeId
+}
+
+type Query {
+  findRecipe(where: RecipeWhereInput, orderBy: [RecipeOrderByWithRelationInput!], cursor: RecipeWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeScalarFieldEnum!]): [Recipe!]!
+}
+
 input RecipeWhereUniqueInput {
-  id: Int
+  id: String
 }
 
 enum RecipeScalarFieldEnum {
@@ -353,4 +376,318 @@ enum RecipeScalarFieldEnum {
 
 type Mutation {
   getRecipeFromUrl(url: String!): Recipe!
+  addRecipe(data: RecipeCreateInput!): Recipe!
+  updateRecipe(data: RecipeUpdateInput!, where: RecipeWhereUniqueInput!): Recipe!
+  upsertRecipe(where: RecipeWhereUniqueInput!, create: RecipeCreateInput!, update: RecipeUpdateInput!): Recipe!
+  deleteRecipe(where: RecipeWhereUniqueInput!): Recipe!
+}
+
+input RecipeCreateInput {
+  id: String
+  name: String!
+  author: String
+  imageUrl: String
+  thumbnailUrl: String
+  description: String
+  recipeCategory: String
+  recipeCuisine: String
+  yield: Int
+  prepTime: String
+  cookTime: String
+  totalTime: String
+  nutrition: RecipeNutritionCreateNestedOneWithoutRecipeInput
+  instructions: RecipeInstructionCreateNestedManyWithoutRecipeInput
+  ingredients: RecipeIngredientsCreateNestedManyWithoutRecipeInput
+  suitableForDiet: String
+  recipeNutritionId: Int
+}
+
+input RecipeNutritionCreateNestedOneWithoutRecipeInput {
+  create: RecipeNutritionCreateWithoutRecipeInput
+  connectOrCreate: RecipeNutritionCreateOrConnectWithoutRecipeInput
+  connect: RecipeNutritionWhereUniqueInput
+}
+
+input RecipeNutritionCreateWithoutRecipeInput {
+  id: String
+  calories: String
+  fatContent: String
+  saturatedFatContent: String
+  carbohydrateContent: String
+  sugarContent: String
+  proteinContent: String
+  fiberContent: String
+  cholesterolContent: String
+  sodiumContent: String
+  servingSize: Int
+}
+
+input RecipeNutritionCreateOrConnectWithoutRecipeInput {
+  where: RecipeNutritionWhereUniqueInput!
+  create: RecipeNutritionCreateWithoutRecipeInput!
+}
+
+input RecipeNutritionWhereUniqueInput {
+  id: String
+  recipeId: String
+}
+
+input RecipeInstructionCreateNestedManyWithoutRecipeInput {
+  create: [RecipeInstructionCreateWithoutRecipeInput!]
+  connectOrCreate: [RecipeInstructionCreateOrConnectWithoutRecipeInput!]
+  connect: [RecipeInstructionWhereUniqueInput!]
+}
+
+input RecipeInstructionCreateWithoutRecipeInput {
+  id: String
+  step: Int!
+  text: String!
+  imageUrl: String
+  thumbnailUrl: String
+}
+
+input RecipeInstructionCreateOrConnectWithoutRecipeInput {
+  where: RecipeInstructionWhereUniqueInput!
+  create: RecipeInstructionCreateWithoutRecipeInput!
+}
+
+input RecipeIngredientsCreateNestedManyWithoutRecipeInput {
+  create: [RecipeIngredientsCreateWithoutRecipeInput!]
+  connectOrCreate: [RecipeIngredientsCreateOrConnectWithoutRecipeInput!]
+  connect: [RecipeIngredientsWhereUniqueInput!]
+}
+
+input RecipeIngredientsCreateWithoutRecipeInput {
+  ingredient: RecipeIngredientCreateNestedOneWithoutRecipesIngredientsInput!
+}
+
+input RecipeIngredientCreateNestedOneWithoutRecipesIngredientsInput {
+  create: RecipeIngredientCreateWithoutRecipesIngredientsInput
+  connectOrCreate: RecipeIngredientCreateOrConnectWithoutRecipesIngredientsInput
+  connect: RecipeIngredientWhereUniqueInput
+}
+
+input RecipeIngredientCreateWithoutRecipesIngredientsInput {
+  id: String
+  quantity: Int
+  scale: String
+  name: String!
+}
+
+input RecipeIngredientCreateOrConnectWithoutRecipesIngredientsInput {
+  where: RecipeIngredientWhereUniqueInput!
+  create: RecipeIngredientCreateWithoutRecipesIngredientsInput!
+}
+
+input RecipeIngredientWhereUniqueInput {
+  id: String
+}
+
+input RecipeIngredientsCreateOrConnectWithoutRecipeInput {
+  where: RecipeIngredientsWhereUniqueInput!
+  create: RecipeIngredientsCreateWithoutRecipeInput!
+}
+
+input RecipeIngredientsWhereUniqueInput {
+  recipeId_ingredientId: RecipeIngredientsRecipeIdIngredientIdCompoundUniqueInput
+}
+
+input RecipeIngredientsRecipeIdIngredientIdCompoundUniqueInput {
+  recipeId: String!
+  ingredientId: String!
+}
+
+input RecipeUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  author: NullableStringFieldUpdateOperationsInput
+  imageUrl: NullableStringFieldUpdateOperationsInput
+  thumbnailUrl: NullableStringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  recipeCategory: NullableStringFieldUpdateOperationsInput
+  recipeCuisine: NullableStringFieldUpdateOperationsInput
+  yield: NullableIntFieldUpdateOperationsInput
+  prepTime: NullableStringFieldUpdateOperationsInput
+  cookTime: NullableStringFieldUpdateOperationsInput
+  totalTime: NullableStringFieldUpdateOperationsInput
+  nutrition: RecipeNutritionUpdateOneWithoutRecipeInput
+  instructions: RecipeInstructionUpdateManyWithoutRecipeInput
+  ingredients: RecipeIngredientsUpdateManyWithoutRecipeInput
+  suitableForDiet: NullableStringFieldUpdateOperationsInput
+  recipeNutritionId: NullableIntFieldUpdateOperationsInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
+input NullableIntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
+}
+
+input RecipeNutritionUpdateOneWithoutRecipeInput {
+  create: RecipeNutritionCreateWithoutRecipeInput
+  connectOrCreate: RecipeNutritionCreateOrConnectWithoutRecipeInput
+  upsert: RecipeNutritionUpsertWithoutRecipeInput
+  disconnect: Boolean
+  delete: Boolean
+  connect: RecipeNutritionWhereUniqueInput
+  update: RecipeNutritionUpdateWithoutRecipeInput
+}
+
+input RecipeNutritionUpsertWithoutRecipeInput {
+  update: RecipeNutritionUpdateWithoutRecipeInput!
+  create: RecipeNutritionCreateWithoutRecipeInput!
+}
+
+input RecipeNutritionUpdateWithoutRecipeInput {
+  id: StringFieldUpdateOperationsInput
+  calories: NullableStringFieldUpdateOperationsInput
+  fatContent: NullableStringFieldUpdateOperationsInput
+  saturatedFatContent: NullableStringFieldUpdateOperationsInput
+  carbohydrateContent: NullableStringFieldUpdateOperationsInput
+  sugarContent: NullableStringFieldUpdateOperationsInput
+  proteinContent: NullableStringFieldUpdateOperationsInput
+  fiberContent: NullableStringFieldUpdateOperationsInput
+  cholesterolContent: NullableStringFieldUpdateOperationsInput
+  sodiumContent: NullableStringFieldUpdateOperationsInput
+  servingSize: NullableIntFieldUpdateOperationsInput
+}
+
+input RecipeInstructionUpdateManyWithoutRecipeInput {
+  create: [RecipeInstructionCreateWithoutRecipeInput!]
+  connectOrCreate: [RecipeInstructionCreateOrConnectWithoutRecipeInput!]
+  upsert: [RecipeInstructionUpsertWithWhereUniqueWithoutRecipeInput!]
+  set: [RecipeInstructionWhereUniqueInput!]
+  disconnect: [RecipeInstructionWhereUniqueInput!]
+  delete: [RecipeInstructionWhereUniqueInput!]
+  connect: [RecipeInstructionWhereUniqueInput!]
+  update: [RecipeInstructionUpdateWithWhereUniqueWithoutRecipeInput!]
+  updateMany: [RecipeInstructionUpdateManyWithWhereWithoutRecipeInput!]
+  deleteMany: [RecipeInstructionScalarWhereInput!]
+}
+
+input RecipeInstructionUpsertWithWhereUniqueWithoutRecipeInput {
+  where: RecipeInstructionWhereUniqueInput!
+  update: RecipeInstructionUpdateWithoutRecipeInput!
+  create: RecipeInstructionCreateWithoutRecipeInput!
+}
+
+input RecipeInstructionUpdateWithoutRecipeInput {
+  id: StringFieldUpdateOperationsInput
+  step: IntFieldUpdateOperationsInput
+  text: StringFieldUpdateOperationsInput
+  imageUrl: NullableStringFieldUpdateOperationsInput
+  thumbnailUrl: NullableStringFieldUpdateOperationsInput
+}
+
+input IntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
+}
+
+input RecipeInstructionUpdateWithWhereUniqueWithoutRecipeInput {
+  where: RecipeInstructionWhereUniqueInput!
+  data: RecipeInstructionUpdateWithoutRecipeInput!
+}
+
+input RecipeInstructionUpdateManyWithWhereWithoutRecipeInput {
+  where: RecipeInstructionScalarWhereInput!
+  data: RecipeInstructionUpdateManyMutationInput!
+}
+
+input RecipeInstructionScalarWhereInput {
+  AND: [RecipeInstructionScalarWhereInput!]
+  OR: [RecipeInstructionScalarWhereInput!]
+  NOT: [RecipeInstructionScalarWhereInput!]
+  id: StringFilter
+  step: IntFilter
+  text: StringFilter
+  imageUrl: StringNullableFilter
+  thumbnailUrl: StringNullableFilter
+  recipeId: StringNullableFilter
+}
+
+input RecipeInstructionUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  step: IntFieldUpdateOperationsInput
+  text: StringFieldUpdateOperationsInput
+  imageUrl: NullableStringFieldUpdateOperationsInput
+  thumbnailUrl: NullableStringFieldUpdateOperationsInput
+}
+
+input RecipeIngredientsUpdateManyWithoutRecipeInput {
+  create: [RecipeIngredientsCreateWithoutRecipeInput!]
+  connectOrCreate: [RecipeIngredientsCreateOrConnectWithoutRecipeInput!]
+  upsert: [RecipeIngredientsUpsertWithWhereUniqueWithoutRecipeInput!]
+  set: [RecipeIngredientsWhereUniqueInput!]
+  disconnect: [RecipeIngredientsWhereUniqueInput!]
+  delete: [RecipeIngredientsWhereUniqueInput!]
+  connect: [RecipeIngredientsWhereUniqueInput!]
+  update: [RecipeIngredientsUpdateWithWhereUniqueWithoutRecipeInput!]
+  updateMany: [RecipeIngredientsUpdateManyWithWhereWithoutRecipeInput!]
+  deleteMany: [RecipeIngredientsScalarWhereInput!]
+}
+
+input RecipeIngredientsUpsertWithWhereUniqueWithoutRecipeInput {
+  where: RecipeIngredientsWhereUniqueInput!
+  update: RecipeIngredientsUpdateWithoutRecipeInput!
+  create: RecipeIngredientsCreateWithoutRecipeInput!
+}
+
+input RecipeIngredientsUpdateWithoutRecipeInput {
+  ingredient: RecipeIngredientUpdateOneRequiredWithoutRecipesIngredientsInput
+}
+
+input RecipeIngredientUpdateOneRequiredWithoutRecipesIngredientsInput {
+  create: RecipeIngredientCreateWithoutRecipesIngredientsInput
+  connectOrCreate: RecipeIngredientCreateOrConnectWithoutRecipesIngredientsInput
+  upsert: RecipeIngredientUpsertWithoutRecipesIngredientsInput
+  connect: RecipeIngredientWhereUniqueInput
+  update: RecipeIngredientUpdateWithoutRecipesIngredientsInput
+}
+
+input RecipeIngredientUpsertWithoutRecipesIngredientsInput {
+  update: RecipeIngredientUpdateWithoutRecipesIngredientsInput!
+  create: RecipeIngredientCreateWithoutRecipesIngredientsInput!
+}
+
+input RecipeIngredientUpdateWithoutRecipesIngredientsInput {
+  id: StringFieldUpdateOperationsInput
+  quantity: NullableIntFieldUpdateOperationsInput
+  scale: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input RecipeIngredientsUpdateWithWhereUniqueWithoutRecipeInput {
+  where: RecipeIngredientsWhereUniqueInput!
+  data: RecipeIngredientsUpdateWithoutRecipeInput!
+}
+
+input RecipeIngredientsUpdateManyWithWhereWithoutRecipeInput {
+  where: RecipeIngredientsScalarWhereInput!
+  data: RecipeIngredientsUncheckedUpdateManyWithoutIngredientsInput!
+}
+
+input RecipeIngredientsScalarWhereInput {
+  AND: [RecipeIngredientsScalarWhereInput!]
+  OR: [RecipeIngredientsScalarWhereInput!]
+  NOT: [RecipeIngredientsScalarWhereInput!]
+  recipeId: StringFilter
+  ingredientId: StringFilter
+}
+
+input RecipeIngredientsUncheckedUpdateManyWithoutIngredientsInput {
+  ingredientId: StringFieldUpdateOperationsInput
 }

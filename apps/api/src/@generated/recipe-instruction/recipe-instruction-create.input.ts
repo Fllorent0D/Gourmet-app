@@ -6,6 +6,9 @@ import { RecipeCreateNestedOneWithoutInstructionsInput } from '../recipe/recipe-
 @InputType()
 export class RecipeInstructionCreateInput {
 
+    @Field(() => String, {nullable:true})
+    id?: string;
+
     @Field(() => Int, {nullable:false})
     step!: number;
 

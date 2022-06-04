@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { IntFilter } from '../prisma/int-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 
 @InputType()
 export class RecipeIngredientsScalarWhereInput {
@@ -14,9 +14,9 @@ export class RecipeIngredientsScalarWhereInput {
     @Field(() => [RecipeIngredientsScalarWhereInput], {nullable:true})
     NOT?: Array<RecipeIngredientsScalarWhereInput>;
 
-    @Field(() => IntFilter, {nullable:true})
-    recipeId?: IntFilter;
+    @Field(() => StringFilter, {nullable:true})
+    recipeId?: StringFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    ingredientId?: IntFilter;
+    @Field(() => StringFilter, {nullable:true})
+    ingredientId?: StringFilter;
 }

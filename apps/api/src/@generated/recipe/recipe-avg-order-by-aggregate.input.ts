@@ -6,9 +6,6 @@ import { SortOrder } from '../prisma/sort-order.enum';
 export class RecipeAvgOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     yield?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

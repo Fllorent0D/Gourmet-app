@@ -1,6 +1,5 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
@@ -10,8 +9,8 @@ import { RecipeInstructionUncheckedUpdateManyWithoutRecipeInput } from '../recip
 @InputType()
 export class RecipeUncheckedUpdateWithoutIngredientsInput {
 
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: IntFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    id?: StringFieldUpdateOperationsInput;
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: StringFieldUpdateOperationsInput;
@@ -52,8 +51,8 @@ export class RecipeUncheckedUpdateWithoutIngredientsInput {
     @Field(() => RecipeInstructionUncheckedUpdateManyWithoutRecipeInput, {nullable:true})
     instructions?: RecipeInstructionUncheckedUpdateManyWithoutRecipeInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    suitableForDiet?: StringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    suitableForDiet?: NullableStringFieldUpdateOperationsInput;
 
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     recipeNutritionId?: NullableIntFieldUpdateOperationsInput;

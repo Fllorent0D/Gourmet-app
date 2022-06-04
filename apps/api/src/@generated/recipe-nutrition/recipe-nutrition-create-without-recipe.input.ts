@@ -6,6 +6,9 @@ import { Int } from '@nestjs/graphql';
 export class RecipeNutritionCreateWithoutRecipeInput {
 
     @Field(() => String, {nullable:true})
+    id?: string;
+
+    @Field(() => String, {nullable:true})
     calories?: string;
 
     @Field(() => String, {nullable:true})

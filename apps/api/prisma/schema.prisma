@@ -16,7 +16,7 @@ datasource db {
 }
 
 model Recipe {
-  id                Int                 @id @default(autoincrement())
+  id                String                 @id @default(uuid())
   name              String
   author            String?
   imageUrl          String?
@@ -31,12 +31,12 @@ model Recipe {
   nutrition         RecipeNutrition?
   instructions      RecipeInstruction[]
   ingredients       RecipeIngredients[]
-  suitableForDiet   String
+  suitableForDiet   String?
   recipeNutritionId Int?
 }
 
 model RecipeNutrition {
-  id                  Int      @id @default(autoincrement())
+  id                  String      @id @default(uuid())
   calories            String?
   fatContent          String?
   saturatedFatContent String?
@@ -48,19 +48,19 @@ model RecipeNutrition {
   sodiumContent       String?
   servingSize         Int?
   recipe   Recipe? @relation(fields: [recipeId], references: [id])
-  recipeId Int?
+  recipeId String?
 }
 
 model RecipeIngredients {
-  recipeId Int
+  recipeId String
   recipe   Recipe? @relation(fields: [recipeId], references: [id])
-  ingredientId Int
+  ingredientId String
   ingredient RecipeIngredient @relation(fields:[ingredientId], references: [id])
   @@id([recipeId, ingredientId])
 }
 
 model RecipeIngredient {
-  id       Int     @id @default(autoincrement())
+  id       String     @id @default(uuid())
   quantity Int?
   scale    String?
   name     String
@@ -68,11 +68,11 @@ model RecipeIngredient {
 }
 
 model RecipeInstruction {
-  id           Int     @id @default(autoincrement())
+  id           String     @id @default(uuid())
   step         Int
   text         String
   imageUrl     String?
   thumbnailUrl String?
   recipe   Recipe? @relation(fields: [recipeId], references: [id])
-  recipeId Int?
+  recipeId String?
 }

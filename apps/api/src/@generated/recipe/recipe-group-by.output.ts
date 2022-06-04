@@ -10,8 +10,8 @@ import { RecipeMaxAggregate } from './recipe-max-aggregate.output';
 @ObjectType()
 export class RecipeGroupBy {
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+    @Field(() => String, {nullable:false})
+    id!: string;
 
     @Field(() => String, {nullable:false})
     name!: string;
@@ -46,8 +46,8 @@ export class RecipeGroupBy {
     @Field(() => String, {nullable:true})
     totalTime?: string;
 
-    @Field(() => String, {nullable:false})
-    suitableForDiet!: string;
+    @Field(() => String, {nullable:true})
+    suitableForDiet?: string;
 
     @Field(() => Int, {nullable:true})
     recipeNutritionId?: number;

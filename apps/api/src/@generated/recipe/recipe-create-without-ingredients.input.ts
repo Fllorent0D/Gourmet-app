@@ -7,6 +7,9 @@ import { RecipeInstructionCreateNestedManyWithoutRecipeInput } from '../recipe-i
 @InputType()
 export class RecipeCreateWithoutIngredientsInput {
 
+    @Field(() => String, {nullable:true})
+    id?: string;
+
     @Field(() => String, {nullable:false})
     name!: string;
 
@@ -46,8 +49,8 @@ export class RecipeCreateWithoutIngredientsInput {
     @Field(() => RecipeInstructionCreateNestedManyWithoutRecipeInput, {nullable:true})
     instructions?: RecipeInstructionCreateNestedManyWithoutRecipeInput;
 
-    @Field(() => String, {nullable:false})
-    suitableForDiet!: string;
+    @Field(() => String, {nullable:true})
+    suitableForDiet?: string;
 
     @Field(() => Int, {nullable:true})
     recipeNutritionId?: number;

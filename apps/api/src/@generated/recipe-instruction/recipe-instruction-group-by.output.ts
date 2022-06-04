@@ -10,8 +10,8 @@ import { RecipeInstructionMaxAggregate } from './recipe-instruction-max-aggregat
 @ObjectType()
 export class RecipeInstructionGroupBy {
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+    @Field(() => String, {nullable:false})
+    id!: string;
 
     @Field(() => Int, {nullable:false})
     step!: number;
@@ -25,8 +25,8 @@ export class RecipeInstructionGroupBy {
     @Field(() => String, {nullable:true})
     thumbnailUrl?: string;
 
-    @Field(() => Int, {nullable:true})
-    recipeId?: number;
+    @Field(() => String, {nullable:true})
+    recipeId?: string;
 
     @Field(() => RecipeInstructionCountAggregate, {nullable:true})
     _count?: RecipeInstructionCountAggregate;

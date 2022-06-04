@@ -8,6 +8,9 @@ import { RecipeIngredientsCreateNestedManyWithoutRecipeInput } from '../recipe-i
 @InputType()
 export class RecipeCreateInput {
 
+    @Field(() => String, {nullable:true})
+    id?: string;
+
     @Field(() => String, {nullable:false})
     name!: string;
 
@@ -50,8 +53,8 @@ export class RecipeCreateInput {
     @Field(() => RecipeIngredientsCreateNestedManyWithoutRecipeInput, {nullable:true})
     ingredients?: RecipeIngredientsCreateNestedManyWithoutRecipeInput;
 
-    @Field(() => String, {nullable:false})
-    suitableForDiet!: string;
+    @Field(() => String, {nullable:true})
+    suitableForDiet?: string;
 
     @Field(() => Int, {nullable:true})
     recipeNutritionId?: number;

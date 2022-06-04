@@ -10,6 +10,9 @@ import { RecipeInstructionUpdateManyWithoutRecipeInput } from '../recipe-instruc
 export class RecipeUpdateWithoutIngredientsInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    id?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: StringFieldUpdateOperationsInput;
 
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
@@ -48,8 +51,8 @@ export class RecipeUpdateWithoutIngredientsInput {
     @Field(() => RecipeInstructionUpdateManyWithoutRecipeInput, {nullable:true})
     instructions?: RecipeInstructionUpdateManyWithoutRecipeInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    suitableForDiet?: StringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    suitableForDiet?: NullableStringFieldUpdateOperationsInput;
 
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     recipeNutritionId?: NullableIntFieldUpdateOperationsInput;

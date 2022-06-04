@@ -6,11 +6,5 @@ import { Int } from '@nestjs/graphql';
 export class RecipeInstructionSumAggregate {
 
     @Field(() => Int, {nullable:true})
-    id?: number;
-
-    @Field(() => Int, {nullable:true})
     step?: number;
-
-    @Field(() => Int, {nullable:true})
-    recipeId?: number;
 }

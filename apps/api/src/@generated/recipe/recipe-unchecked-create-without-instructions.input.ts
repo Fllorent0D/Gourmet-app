@@ -7,8 +7,8 @@ import { RecipeIngredientsUncheckedCreateNestedManyWithoutRecipeInput } from '..
 @InputType()
 export class RecipeUncheckedCreateWithoutInstructionsInput {
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
     @Field(() => String, {nullable:false})
     name!: string;
@@ -49,8 +49,8 @@ export class RecipeUncheckedCreateWithoutInstructionsInput {
     @Field(() => RecipeIngredientsUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
     ingredients?: RecipeIngredientsUncheckedCreateNestedManyWithoutRecipeInput;
 
-    @Field(() => String, {nullable:false})
-    suitableForDiet!: string;
+    @Field(() => String, {nullable:true})
+    suitableForDiet?: string;
 
     @Field(() => Int, {nullable:true})
     recipeNutritionId?: number;

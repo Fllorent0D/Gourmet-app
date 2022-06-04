@@ -5,6 +5,9 @@ import { Int } from '@nestjs/graphql';
 @InputType()
 export class RecipeInstructionCreateWithoutRecipeInput {
 
+    @Field(() => String, {nullable:true})
+    id?: string;
+
     @Field(() => Int, {nullable:false})
     step!: number;
 

@@ -6,8 +6,5 @@ import { Int } from '@nestjs/graphql';
 export class RecipeIngredientSumAggregate {
 
     @Field(() => Int, {nullable:true})
-    id?: number;
-
-    @Field(() => Int, {nullable:true})
     quantity?: number;
 }

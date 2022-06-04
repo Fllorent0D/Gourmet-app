@@ -6,9 +6,6 @@ import { Float } from '@nestjs/graphql';
 export class RecipeAvgAggregate {
 
     @Field(() => Float, {nullable:true})
-    id?: number;
-
-    @Field(() => Float, {nullable:true})
     yield?: number;
 
     @Field(() => Float, {nullable:true})

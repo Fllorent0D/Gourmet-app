@@ -6,6 +6,9 @@ import { RecipeIngredientsCreateNestedManyWithoutIngredientInput } from '../reci
 @InputType()
 export class RecipeIngredientCreateInput {
 
+    @Field(() => String, {nullable:true})
+    id?: string;
+
     @Field(() => Int, {nullable:true})
     quantity?: number;
 

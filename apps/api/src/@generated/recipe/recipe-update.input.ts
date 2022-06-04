@@ -11,6 +11,9 @@ import { RecipeIngredientsUpdateManyWithoutRecipeInput } from '../recipe-ingredi
 export class RecipeUpdateInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    id?: StringFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: StringFieldUpdateOperationsInput;
 
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
@@ -52,8 +55,8 @@ export class RecipeUpdateInput {
     @Field(() => RecipeIngredientsUpdateManyWithoutRecipeInput, {nullable:true})
     ingredients?: RecipeIngredientsUpdateManyWithoutRecipeInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    suitableForDiet?: StringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    suitableForDiet?: NullableStringFieldUpdateOperationsInput;
 
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     recipeNutritionId?: NullableIntFieldUpdateOperationsInput;

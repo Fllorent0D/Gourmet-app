@@ -7,8 +7,6 @@ import { RecipeIngredientsScalarFieldEnum } from './recipe-ingredients-scalar-fi
 import { RecipeIngredientsScalarWhereWithAggregatesInput } from './recipe-ingredients-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 import { RecipeIngredientsCountAggregateInput } from './recipe-ingredients-count-aggregate.input';
-import { RecipeIngredientsAvgAggregateInput } from './recipe-ingredients-avg-aggregate.input';
-import { RecipeIngredientsSumAggregateInput } from './recipe-ingredients-sum-aggregate.input';
 import { RecipeIngredientsMinAggregateInput } from './recipe-ingredients-min-aggregate.input';
 import { RecipeIngredientsMaxAggregateInput } from './recipe-ingredients-max-aggregate.input';
 
@@ -36,12 +34,6 @@ export class RecipeIngredientsGroupByArgs {
 
     @Field(() => RecipeIngredientsCountAggregateInput, {nullable:true})
     _count?: RecipeIngredientsCountAggregateInput;
-
-    @Field(() => RecipeIngredientsAvgAggregateInput, {nullable:true})
-    _avg?: RecipeIngredientsAvgAggregateInput;
-
-    @Field(() => RecipeIngredientsSumAggregateInput, {nullable:true})
-    _sum?: RecipeIngredientsSumAggregateInput;
 
     @Field(() => RecipeIngredientsMinAggregateInput, {nullable:true})
     _min?: RecipeIngredientsMinAggregateInput;

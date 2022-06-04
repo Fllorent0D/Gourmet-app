@@ -4,7 +4,7 @@ import * as schemaDTS from "schema-dts";
 export class RecipeSEOMapper {
   static mapRecipeSEOToRecipe(recipeSEO: schemaDTS.WithContext<schemaDTS.Recipe>): Recipe {
     return {
-      id: 0,
+      id: '11111',
       name: RecipeSEOMapper.getNameFromRecipe(recipeSEO),
       author: RecipeSEOMapper.getAuthorFromRecipe(recipeSEO),
       imageUrl: '',

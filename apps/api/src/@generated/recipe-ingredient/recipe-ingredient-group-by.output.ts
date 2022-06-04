@@ -10,8 +10,8 @@ import { RecipeIngredientMaxAggregate } from './recipe-ingredient-max-aggregate.
 @ObjectType()
 export class RecipeIngredientGroupBy {
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+    @Field(() => String, {nullable:false})
+    id!: string;
 
     @Field(() => Int, {nullable:true})
     quantity?: number;

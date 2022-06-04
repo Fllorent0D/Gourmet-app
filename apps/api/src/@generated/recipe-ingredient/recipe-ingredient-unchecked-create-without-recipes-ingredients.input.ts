@@ -5,8 +5,8 @@ import { Int } from '@nestjs/graphql';
 @InputType()
 export class RecipeIngredientUncheckedCreateWithoutRecipesIngredientsInput {
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
     @Field(() => Int, {nullable:true})
     quantity?: number;

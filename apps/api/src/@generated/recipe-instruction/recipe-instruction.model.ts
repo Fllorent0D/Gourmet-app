@@ -8,7 +8,7 @@ import { Recipe } from '../recipe/recipe.model';
 export class RecipeInstruction {
 
     @Field(() => ID, {nullable:false})
-    id!: number;
+    id!: string;
 
     @Field(() => Int, {nullable:false})
     step!: number;
@@ -25,6 +25,6 @@ export class RecipeInstruction {
     @Field(() => Recipe, {nullable:true})
     recipe?: Recipe | null;
 
-    @Field(() => Int, {nullable:true})
-    recipeId!: number | null;
+    @Field(() => String, {nullable:true})
+    recipeId!: string | null;
 }

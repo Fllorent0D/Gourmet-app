@@ -5,8 +5,8 @@ import { Int } from '@nestjs/graphql';
 @ObjectType()
 export class RecipeInstructionMinAggregate {
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
     @Field(() => Int, {nullable:true})
     step?: number;
@@ -20,6 +20,6 @@ export class RecipeInstructionMinAggregate {
     @Field(() => String, {nullable:true})
     thumbnailUrl?: string;
 
-    @Field(() => Int, {nullable:true})
-    recipeId?: number;
+    @Field(() => String, {nullable:true})
+    recipeId?: string;
 }

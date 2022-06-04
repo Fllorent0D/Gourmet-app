@@ -1,9 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { IntFilter } from '../prisma/int-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
-import { StringFilter } from '../prisma/string-filter.input';
 import { RecipeIngredientsListRelationFilter } from '../recipe-ingredients/recipe-ingredients-list-relation-filter.input';
 
 @InputType()
@@ -18,8 +17,8 @@ export class RecipeIngredientWhereInput {
     @Field(() => [RecipeIngredientWhereInput], {nullable:true})
     NOT?: Array<RecipeIngredientWhereInput>;
 
-    @Field(() => IntFilter, {nullable:true})
-    id?: IntFilter;
+    @Field(() => StringFilter, {nullable:true})
+    id?: StringFilter;
 
     @Field(() => IntNullableFilter, {nullable:true})
     quantity?: IntNullableFilter;

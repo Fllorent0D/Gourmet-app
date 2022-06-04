@@ -6,8 +6,6 @@ import { RecipeIngredientsOrderByWithRelationInput } from './recipe-ingredients-
 import { RecipeIngredientsWhereUniqueInput } from './recipe-ingredients-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { RecipeIngredientsCountAggregateInput } from './recipe-ingredients-count-aggregate.input';
-import { RecipeIngredientsAvgAggregateInput } from './recipe-ingredients-avg-aggregate.input';
-import { RecipeIngredientsSumAggregateInput } from './recipe-ingredients-sum-aggregate.input';
 import { RecipeIngredientsMinAggregateInput } from './recipe-ingredients-min-aggregate.input';
 import { RecipeIngredientsMaxAggregateInput } from './recipe-ingredients-max-aggregate.input';
 
@@ -32,12 +30,6 @@ export class RecipeIngredientsAggregateArgs {
 
     @Field(() => RecipeIngredientsCountAggregateInput, {nullable:true})
     _count?: RecipeIngredientsCountAggregateInput;
-
-    @Field(() => RecipeIngredientsAvgAggregateInput, {nullable:true})
-    _avg?: RecipeIngredientsAvgAggregateInput;
-
-    @Field(() => RecipeIngredientsSumAggregateInput, {nullable:true})
-    _sum?: RecipeIngredientsSumAggregateInput;
 
     @Field(() => RecipeIngredientsMinAggregateInput, {nullable:true})
     _min?: RecipeIngredientsMinAggregateInput;

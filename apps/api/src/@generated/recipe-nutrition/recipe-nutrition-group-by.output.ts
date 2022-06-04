@@ -10,8 +10,8 @@ import { RecipeNutritionMaxAggregate } from './recipe-nutrition-max-aggregate.ou
 @ObjectType()
 export class RecipeNutritionGroupBy {
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+    @Field(() => String, {nullable:false})
+    id!: string;
 
     @Field(() => String, {nullable:true})
     calories?: string;
@@ -43,8 +43,8 @@ export class RecipeNutritionGroupBy {
     @Field(() => Int, {nullable:true})
     servingSize?: number;
 
-    @Field(() => Int, {nullable:true})
-    recipeId?: number;
+    @Field(() => String, {nullable:true})
+    recipeId?: string;
 
     @Field(() => RecipeNutritionCountAggregate, {nullable:true})
     _count?: RecipeNutritionCountAggregate;

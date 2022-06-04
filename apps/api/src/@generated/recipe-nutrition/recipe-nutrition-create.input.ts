@@ -7,6 +7,9 @@ import { RecipeCreateNestedOneWithoutNutritionInput } from '../recipe/recipe-cre
 export class RecipeNutritionCreateInput {
 
     @Field(() => String, {nullable:true})
+    id?: string;
+
+    @Field(() => String, {nullable:true})
     calories?: string;
 
     @Field(() => String, {nullable:true})

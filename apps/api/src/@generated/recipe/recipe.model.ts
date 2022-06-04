@@ -11,7 +11,7 @@ import { RecipeCount } from './recipe-count.output';
 export class Recipe {
 
     @Field(() => ID, {nullable:false})
-    id!: number;
+    id!: string;
 
     @Field(() => String, {nullable:false})
     name!: string;
@@ -55,8 +55,8 @@ export class Recipe {
     @Field(() => [RecipeIngredients], {nullable:true})
     ingredients?: Array<RecipeIngredients>;
 
-    @Field(() => String, {nullable:false})
-    suitableForDiet!: string;
+    @Field(() => String, {nullable:true})
+    suitableForDiet!: string | null;
 
     @Field(() => Int, {nullable:true})
     recipeNutritionId!: number | null;

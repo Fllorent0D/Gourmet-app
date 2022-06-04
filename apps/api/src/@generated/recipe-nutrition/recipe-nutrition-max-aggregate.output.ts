@@ -5,8 +5,8 @@ import { Int } from '@nestjs/graphql';
 @ObjectType()
 export class RecipeNutritionMaxAggregate {
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
     @Field(() => String, {nullable:true})
     calories?: string;
@@ -38,6 +38,6 @@ export class RecipeNutritionMaxAggregate {
     @Field(() => Int, {nullable:true})
     servingSize?: number;
 
-    @Field(() => Int, {nullable:true})
-    recipeId?: number;
+    @Field(() => String, {nullable:true})
+    recipeId?: string;
 }

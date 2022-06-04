@@ -3,15 +3,18 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common';
+import {INestApplication, Logger} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-
+import {express} from 'graphql-voyager/middleware';
 import { AppModule } from './app/app.module';
 import {PrismaService} from "./app/shared/prisma.service";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app: INestApplication = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
+
+  app.use('/voyager', express({endpointUrl: '/graphql'}))
+
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
 
