@@ -19,8 +19,13 @@ export class RecipeResolver {
   ) {
   }
 
-  @Query(() => [Recipe])
+  @Query(() => Recipe)
   findRecipe(@Args() findManyRecipeArgs: FindManyRecipeArgs) {
+    return this.primaService.recipe.findFirst({...findManyRecipeArgs});
+  }
+
+  @Query(() => [Recipe])
+  findRecipes(@Args() findManyRecipeArgs: FindManyRecipeArgs) {
     return this.primaService.recipe.findMany({...findManyRecipeArgs});
   }
 

@@ -1,5 +1,4 @@
 {
-  "root": "apps/gourmet-e2e",
   "sourceRoot": "apps/gourmet-e2e/src",
   "projectType": "application",
   "targets": {

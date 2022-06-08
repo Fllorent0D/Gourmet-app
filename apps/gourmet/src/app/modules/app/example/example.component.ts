@@ -2,6 +2,7 @@ import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {FuseMediaWatcherService} from "../../../../@fuse/services/media-watcher";
 import {MatDrawer} from "@angular/material/sidenav";
+import {AllRecipeGQL} from "../../../@generated/graphql";
 
 @Component({
   selector: 'example',
@@ -18,7 +19,10 @@ export class ExampleComponent {
   /**
    * Constructor
    */
-  constructor(private _fuseMediaWatcherService: FuseMediaWatcherService) {
+  constructor(
+    private _fuseMediaWatcherService: FuseMediaWatcherService,
+    private readonly allRecipeGql: AllRecipeGQL
+  ) {
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -29,6 +33,7 @@ export class ExampleComponent {
    * On init
    */
   ngOnInit(): void {
+    this.allRecipeGql.fetch().subscribe((test) => console.log(test))
     // Subscribe to media changes
     this._fuseMediaWatcherService.onMediaChange$
       .pipe(takeUntil(this._unsubscribeAll))

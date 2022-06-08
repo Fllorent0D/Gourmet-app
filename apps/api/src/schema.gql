@@ -350,7 +350,8 @@ enum RecipeInstructionScalarFieldEnum {
 }
 
 type Query {
-  findRecipe(where: RecipeWhereInput, orderBy: [RecipeOrderByWithRelationInput!], cursor: RecipeWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeScalarFieldEnum!]): [Recipe!]!
+  findRecipe(where: RecipeWhereInput, orderBy: [RecipeOrderByWithRelationInput!], cursor: RecipeWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeScalarFieldEnum!]): Recipe!
+  findRecipes(where: RecipeWhereInput, orderBy: [RecipeOrderByWithRelationInput!], cursor: RecipeWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeScalarFieldEnum!]): [Recipe!]!
 }
 
 input RecipeWhereUniqueInput {

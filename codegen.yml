@@ -1,0 +1,10 @@
+documents:
+  - 'apps/gourmet/src/**/*.graphql'
+generates:
+  'apps/gourmet/src/app/@generated/graphql.ts':
+    schema:
+      - 'apps/api/src/schema.gql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular

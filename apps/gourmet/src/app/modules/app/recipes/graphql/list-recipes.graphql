@@ -1,0 +1,9 @@
+# Write your query or mutation here
+query listRecipes {
+  findRecipes {
+    id
+    name
+		description
+  }
+}
+

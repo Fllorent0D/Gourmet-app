@@ -1,0 +1,11 @@
+query allRecipe{
+  findRecipe {
+    id
+    name
+    suitableForDiet
+    instructions(orderBy: { step: desc }) {
+      id
+      text
+    }
+  }
+}

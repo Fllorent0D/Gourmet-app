@@ -1,9 +1,8 @@
 {
   "projectType": "application",
-  "root": "apps/gourmet",
   "sourceRoot": "apps/gourmet/src",
   "prefix": "gourmet-app",
-  "schematics": {
+  "generators": {
     "@schematics/angular:component": {
       "style": "scss"
     }
@@ -37,9 +36,7 @@
           }
         ],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "apps/gourmet/src/@fuse/styles"
-          ]
+          "includePaths": ["apps/gourmet/src/@fuse/styles"]
         },
         "styles": [
           "apps/gourmet/src/@fuse/styles/tailwind.scss",
@@ -118,7 +115,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/gourmet"],
       "options": {
-        "jestConfig": "apps/gourmet/jest.config.js",
+        "jestConfig": "apps/gourmet/jest.config.ts",
         "passWithNoTests": true
       }
     }

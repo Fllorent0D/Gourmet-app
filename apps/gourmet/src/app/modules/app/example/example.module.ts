@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
-import { ExampleComponent } from 'app/modules/admin/example/example.component';
+import { ExampleComponent } from 'app/modules/app/example/example.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RecipeSidebarComponent } from './sidebar/recipe-sidebar/recipe-sidebar.component';
 import { MatIconModule } from '@angular/material/icon';

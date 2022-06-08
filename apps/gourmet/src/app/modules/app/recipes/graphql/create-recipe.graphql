@@ -1,0 +1,5 @@
+mutation recipeCreateOne ($recipeCreateInput: RecipeCreateInput!){
+  addRecipe(data: $recipeCreateInput){
+    id
+  }
+}

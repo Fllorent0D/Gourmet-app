@@ -1,0 +1,13 @@
+# Write your query or mutation here
+query findRecipeById($recipeId: String!) {
+  findRecipe(where:{id: {equals: $recipeId}}) {
+    id
+    name
+    description
+    instructions(orderBy: { step: desc }) {
+      id
+      text
+    }
+  }
+}
+
