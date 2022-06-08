@@ -1,0 +1,7 @@
+<ul *ngIf="recipes$|async as result">
+  <div *ngIf="result.loading">IsLoading...</div>
+  <li *ngFor="let recipe of result.data.findRecipe">
+    <h1>{{recipe.name}}</h1>
+    <p>{{recipe.description}}</p>
+  </li>
+</ul>
