@@ -1,19 +1,22 @@
 <div
   class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto"
-  cdkScrollable>
+>
 
   <!-- Main -->
   <div class="flex-auto p-6 sm:p-10">
-
+    <h1>Compose</h1>
     <form [formGroup]="recipeFormGroup" class="flex flex-col mt-8 p-8 pb-0 bg-card rounded-2xl shadow overflow-hidden">
       <div class="flex flex-col gt-xs:flex-row">
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput formControlName="title">
+          <input matInput mat-ripple formControlName="title">
         </mat-form-field>
       </div>
       <div class="flex flex-col h-px-500">
-          <quill-editor formControlName="description" styles="height: 50000px"></quill-editor>
+        <quill-editor formControlName="description"></quill-editor>
+      </div>
+      <div class="flex flex-col">
+        <gourmet-app-ingredients-form-control formControlName="ingredients"></gourmet-app-ingredients-form-control>
       </div>
       <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
         <button
@@ -25,6 +28,7 @@
           Save
         </button>
       </div>
+
     </form>
 
   </div>

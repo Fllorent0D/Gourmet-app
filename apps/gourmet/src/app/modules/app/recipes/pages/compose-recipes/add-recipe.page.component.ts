@@ -5,11 +5,10 @@ import {Recipe, RecipeCreateOneGQL} from "../../../../../@generated/graphql";
 @Component({
   selector: 'gourmet-app-add-recipe.page',
   templateUrl: './add-recipe.page.component.html',
-  styleUrls: ['./add-recipe.page.component.scss']
 })
 export class AddRecipePageComponent implements OnInit {
 
-  recipeFormGroup: FormGroup<{title: FormControl<string>, description: FormControl<string>}>
+  recipeFormGroup: FormGroup<{title: FormControl<string>, description: FormControl<string>, ingredients: FormControl<string[]>}>
 
 
   constructor(
@@ -20,7 +19,8 @@ export class AddRecipePageComponent implements OnInit {
   ngOnInit(): void {
     this.recipeFormGroup = new FormGroup({
       title: new FormControl<string>('', [Validators.minLength(10), Validators.required]),
-      description: new FormControl<string>('', )
+      description: new FormControl<string>('', ),
+      ingredients: new FormControl<string[]>([]),
     })
   }
 

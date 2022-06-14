@@ -13,9 +13,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
       ],
       errorFormat: 'colorless',
     });
-    this.$on<any>('query', (event) => {
-      console.log('Query: ' + event["query"]);
-    });
+
   }
 
   async onModuleInit() {

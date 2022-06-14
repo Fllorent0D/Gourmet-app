@@ -349,6 +349,18 @@ enum RecipeInstructionScalarFieldEnum {
   recipeId
 }
 
+type User {
+  id: ID!
+  firstName: String
+  lastName: String
+  email: String!
+  role: String
+}
+
+type LoginUserOutput {
+  access_token: String!
+}
+
 type Query {
   findRecipe(where: RecipeWhereInput, orderBy: [RecipeOrderByWithRelationInput!], cursor: RecipeWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeScalarFieldEnum!]): Recipe!
   findRecipes(where: RecipeWhereInput, orderBy: [RecipeOrderByWithRelationInput!], cursor: RecipeWhereUniqueInput, take: Int, skip: Int, distinct: [RecipeScalarFieldEnum!]): [Recipe!]!
@@ -381,6 +393,8 @@ type Mutation {
   updateRecipe(data: RecipeUpdateInput!, where: RecipeWhereUniqueInput!): Recipe!
   upsertRecipe(where: RecipeWhereUniqueInput!, create: RecipeCreateInput!, update: RecipeUpdateInput!): Recipe!
   deleteRecipe(where: RecipeWhereUniqueInput!): Recipe!
+  createUser(data: UserCreateInput!): User!
+  loginUser(email: String!, password: String!): LoginUserOutput!
 }
 
 input RecipeCreateInput {
@@ -691,4 +705,12 @@ input RecipeIngredientsScalarWhereInput {
 
 input RecipeIngredientsUncheckedUpdateManyWithoutIngredientsInput {
   ingredientId: StringFieldUpdateOperationsInput
+}
+
+input UserCreateInput {
+  firstName: String
+  lastName: String
+  email: String!
+  role: String
+  password: String!
 }

@@ -2,12 +2,20 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {QuillModule} from "ngx-quill";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+
+const MATERIAL_MODULE = [
+  MatInputModule,
+  MatButtonModule,
+]
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MATERIAL_MODULE,
     QuillModule.forRoot({
       modules: {
         toolbar: [
@@ -31,7 +39,8 @@ import {QuillModule} from "ngx-quill";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    QuillModule
+    QuillModule,
+    MATERIAL_MODULE
   ]
 })
 export class SharedModule {

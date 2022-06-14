@@ -15,8 +15,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  /// @HideField({ output: false, input: true })
+  id        String @id @default(uuid())
+  firstName String?
+  lastName  String?
+  email     String
+  /// @HideField({ output: false, input: true })
+  role      String?
+  /// @HideField({ output: true, input: false })
+  password  String
+}
+
 model Recipe {
-  id                String                 @id @default(uuid())
+  id                String              @id @default(uuid())
   name              String
   author            String?
   imageUrl          String?
@@ -36,7 +48,7 @@ model Recipe {
 }
 
 model RecipeNutrition {
-  id                  String      @id @default(uuid())
+  id                  String  @id @default(uuid())
   calories            String?
   fatContent          String?
   saturatedFatContent String?
@@ -47,32 +59,33 @@ model RecipeNutrition {
   cholesterolContent  String?
   sodiumContent       String?
   servingSize         Int?
-  recipe   Recipe? @relation(fields: [recipeId], references: [id])
-  recipeId String?
+  recipe              Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId            String? @unique
 }
 
 model RecipeIngredients {
-  recipeId String
-  recipe   Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId     String
+  recipe       Recipe?          @relation(fields: [recipeId], references: [id])
   ingredientId String
-  ingredient RecipeIngredient @relation(fields:[ingredientId], references: [id])
+  ingredient   RecipeIngredient @relation(fields: [ingredientId], references: [id])
+
   @@id([recipeId, ingredientId])
 }
 
 model RecipeIngredient {
-  id       String     @id @default(uuid())
-  quantity Int?
-  scale    String?
-  name     String
+  id                 String              @id @default(uuid())
+  quantity           Int?
+  scale              String?
+  name               String
   recipesIngredients RecipeIngredients[]
 }
 
 model RecipeInstruction {
-  id           String     @id @default(uuid())
+  id           String  @id @default(uuid())
   step         Int
   text         String
   imageUrl     String?
   thumbnailUrl String?
-  recipe   Recipe? @relation(fields: [recipeId], references: [id])
-  recipeId String?
+  recipe       Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId     String?
 }

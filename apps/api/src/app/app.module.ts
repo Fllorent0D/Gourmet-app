@@ -3,7 +3,7 @@ import {GraphQLModule} from "@nestjs/graphql";
 import {ApolloDriver, ApolloDriverConfig} from "@nestjs/apollo";
 import {join} from 'path';
 import {RecipesModule} from "./recipes/recipes.module";
-import {HttpModule} from "@nestjs/axios";
+import {UsersModule} from "./users/users.module";
 
 @Module({
   imports: [
@@ -14,6 +14,7 @@ import {HttpModule} from "@nestjs/axios";
       autoSchemaFile: join(process.cwd(), 'apps/api/src/schema.gql')
     }),
     RecipesModule,
+    UsersModule
   ],
 })
 export class AppModule {

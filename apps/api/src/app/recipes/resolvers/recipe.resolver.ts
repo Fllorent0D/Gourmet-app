@@ -1,6 +1,6 @@
 import {Args, Mutation, Parent, Query, ResolveField, Resolver} from "@nestjs/graphql";
 import {Recipe} from "../../../@generated/recipe/recipe.model";
-import {PrismaService} from "../../shared/prisma.service";
+import {PrismaService} from "../../shared/db/prisma.service";
 import {FindManyRecipeArgs} from "../../../@generated/recipe/find-many-recipe.args";
 import {ImportRecipeInputArgs} from "./args/import-recipe-input.args";
 import {RecipeImporterService} from "../services/recipe-importer.service";
@@ -10,6 +10,9 @@ import {UpsertOneRecipeArgs} from "../../../@generated/recipe/upsert-one-recipe.
 import {DeleteOneRecipeArgs} from "../../../@generated/recipe/delete-one-recipe.args";
 import {FindManyRecipeInstructionArgs} from "../../../@generated/recipe-instruction/find-many-recipe-instruction.args";
 import {RecipeInstruction} from "../../../@generated/recipe-instruction/recipe-instruction.model";
+import {UseGuards} from "@nestjs/common";
+import {AuthGuard} from "@nestjs/passport";
+import {JwtAuthGuard} from "../../shared/auth/jwt-auth.guard";
 
 @Resolver(Recipe)
 export class RecipeResolver {
@@ -20,6 +23,7 @@ export class RecipeResolver {
   }
 
   @Query(() => Recipe)
+  @UseGuards(JwtAuthGuard)
   findRecipe(@Args() findManyRecipeArgs: FindManyRecipeArgs) {
     return this.primaService.recipe.findFirst({...findManyRecipeArgs});
   }

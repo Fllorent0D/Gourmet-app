@@ -7,7 +7,7 @@ import {INestApplication, Logger} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {express} from 'graphql-voyager/middleware';
 import { AppModule } from './app/app.module';
-import {PrismaService} from "./app/shared/prisma.service";
+import {PrismaService} from "./app/shared/db/prisma.service";
 
 async function bootstrap() {
   const app: INestApplication = await NestFactory.create(AppModule);

@@ -8,7 +8,8 @@ import {RouterModule} from "@angular/router";
     RouterModule.forChild([
       {
         path: 'compose',
-        loadChildren: () => import('./pages/compose-recipes/compose-recipes.module').then(m => m.ComposeRecipesModule)
+        loadChildren: () => import('./pages/compose-recipes/compose-recipes.module').then(m => m.ComposeRecipesModule),
+        pathMatch: 'full'
       },
       {
         path: '',
